@@ -35,9 +35,11 @@ module.exports = function (config) {
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ["Chrome","ChromeHeadless","ChromeHeadlessCI"],
+    customLaunchers: {
+      base: "ChromeHeadless",
+      flags: ["--no-sandbox"],
+    },
     singleRun: false,
     restartOnFileChange: true
   });

@@ -27,4 +27,4 @@ jobs:
     - name: Lint project
       run: yarn run lint 
     - name: Test project
-      run: yarn run test:ci
+      run: yarn run test-ci

@@ -37,7 +37,7 @@ module.exports = function (config) {
     colors: true,
     browsers: ["Chrome","ChromeHeadless","ChromeHeadlessCI"],
     customLaunchers: {
-      base: "ChromeHeadless",
+      base: "ChromeHeadlessCI",
       flags: ["--no-sandbox"],
     },
     singleRun: false,

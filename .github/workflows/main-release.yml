@@ -1,4 +1,4 @@
-name: feature-01 ci
+name: main-release ci
 run-name:  ${{github.actor}} is integrating feature-01
 on:
   push:

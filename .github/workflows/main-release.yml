@@ -1,5 +1,5 @@
 name: main-release ci
-run-name:  ${{github.actor}} is integrating feature-01
+run-name:  ${{github.actor}} is integrating main-release
 on:
   push:
     tags: 

@@ -3,7 +3,7 @@ run-name:  ${{github.actor}} is integrating feature-release
 on:
   push:
     branches: 
-    - v*.*.*
+    - b*.*.*
 jobs:
   ci-features-01:
     runs-on: ubuntu-latest
@@ -16,7 +16,12 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: "16"
-        cache: 'npm'
+    - name: Setup environment variables
+      run: |
+           VERSION="${REF_NAME#refs/head/b}"
+           echo "VERSION=${VERSION}" >> $GITHUB_ENV
+           echo "BRANCH_NAME=b${VERSION}" >> $GITHUB_ENV
+           echo "TAG_NAME=v${VERSION}" >> $GITHUB_ENV
     - name: Setup git user
       run: |
            git config --global user.email "${{ github.event.pusher.email }}"
@@ -25,6 +30,8 @@ jobs:
       run: npm install -g yarn
     - name: Install dependencies
       run: npm install --frozen-lockfile
+    - name: Lint project
+      run: npm run lint
     - name: Test project
       run: npm run test:ci
     - name: Merge main
@@ -33,7 +40,7 @@ jobs:
            git checkout main
            git merge ${{ env.BRANCH_NAME}}
            git push origin main
-           git tag -l ${{ env.BRANCH_NAME}} -m "my version ${{ env.BRANCH_NAME}}"
+           git tag -l ${{ env.BRANCH_NAME}} -m "my version ${{ env.VERSION}}"
            git push origin main --tags
 
   

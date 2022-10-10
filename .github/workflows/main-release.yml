@@ -8,15 +8,14 @@ jobs:
   ci-features-01:
     runs-on: ubuntu-latest
     env: 
-      BRANCH_NAME: ${{ github.ref }}
+      TAG_NAME: ${{ github.ref }}
     steps:
     - uses: actions/checkout@v3
       with:
-        token: ${{ secrets.PUSH_MAIN }} 
+        token: ${{ secrets.RELEASE_MAIN}} 
     - uses: actions/setup-node@v3
       with:
         node-version: "16"
-        cache: 'npm'
     - name: Setup git user
       run: |
            git config --global user.email "${{ github.event.pusher.email }}"

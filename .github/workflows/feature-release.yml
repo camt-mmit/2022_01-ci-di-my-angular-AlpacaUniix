@@ -38,9 +38,9 @@ jobs:
       run: |
            git fetch --unshallow
            git checkout main
-           git merge ${{ env.REF_NAME}}
+           git merge ${{ env.BRANCH_NAME}}
            git push origin main
-           git tag -a ${{ env.REF_NAME}} -m "my version ${{ env.VERSION}}"
+           git tag -a ${{ env.TAG_NAME}} -m "my version ${{ env.VERSION}}"
            git push origin main --tags
 
   
